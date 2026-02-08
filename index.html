@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Booking System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+       font-family: 'Inter', sans-serif;
+        }
+        body {
+            background-color: #f6f7fb;
+            color: #333;
+        }
+        header {
+            background: #ffffff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #4b2aad;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 500;
+        }
+        .signup-btn {
+            background: #4b2aad;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        main {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .welcome {
+            font-size: 14px;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        h1 {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 50px;
+        }
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .card {
+            background: #ffffff;
+            width: 260px;
+            padding: 35px 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        .card img {
+            width: 70px;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            background: #4b2aad;
+            color: white;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        footer {
+            background: #ffffff;
+            border-top: 1px solid #ddd;
+            padding: 20px 40px;
+            margin-top: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        footer p {
+            font-size: 14px;
+            color: #555;
+        }
+        .footer-links {
+            display: flex;
+            gap: 15px;
+        }
+        .footer-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        🎬 MOVIE 
+    </div>
+</header>
+<main>
+    <div class="welcome">WELCOME BACK</div>
+    <h1>MOVIE BOOKING SYSTEM</h1>
+    <div class="subtitle">Select your portal to manage bookings, theaters, or administrative settings.
+    </div>
+    <div class="cards">
+        <div class="card">
+            <img src="https://img.icons8.com/fluency/96/admin-settings-male.png">
+            <h3>Admin</h3>
+            <button class="btn">Login →</button>
+        </div>
+        <div class="card">
+            <img src="https://img.icons8.com/fluency/96/movie-projector.png">
+            <h3>Theater</h3>
+            <button class="btn">Login →</button>
+        </div>
+        <div class="card">
+            <img src="https://img.icons8.com/fluency/96/group.png">
+            <h3>User</h3>
+            <button class="btn">Login →</button>
+        </div>
+    </div>
+</main>
+<footer>
+    <p>© 2026 Movie Booking System. All rights reserved.</p>
+</footer>
+</body>
+</html>
