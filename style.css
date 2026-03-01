@@ -1,15 +1,16 @@
- {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 body {
-  background: white;
+  background: whitesmoke;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 60px;
 }
 form {
   background: #ffffff;
@@ -20,14 +21,14 @@ form {
 }
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-weight: bold;
   font-size: 24px;
 }
 label {
   font-weight: bold;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 input[type="text"],
 input[type="email"],
@@ -35,7 +36,7 @@ input[type="password"],
 input[type="date"] {
   width: 100%;
   padding: 9px;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
@@ -54,4 +55,20 @@ button {
 }
 button:hover {
   background-color: #333;
+
+}
+.register-text {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.register-text a {
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
 }
