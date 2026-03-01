@@ -2,14 +2,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 body {
-  background: white;
+  background: whitesmoke;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 60px;
 }
 form {
   background: #ffffff;
@@ -54,4 +55,20 @@ button {
 }
 button:hover {
   background-color: #333;
+
+}
+.register-text {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.register-text a {
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
 }
