@@ -211,11 +211,14 @@ ul {
    ===================== */
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 200px);
+   gap: 20px;
+  justify-content:start;
+ 
 }
 
-.movie-card {
+.coming-card {
+  width: 200px;
   background-color: #1e1e1e;
   border-radius: 10px;
   overflow: hidden;
@@ -314,15 +317,17 @@ ul {
 
 
 /* =====================
-   COMING SOON CARDS
+   Top Review
    ===================== */
 .coming-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit,
+  minmax(200px,1fr));
+gap: 20px;
 }
 
 .coming-card {
+  width: 200px;
   border-radius: 10px;
   overflow: hidden;
 }
