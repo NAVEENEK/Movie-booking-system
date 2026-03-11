@@ -1,138 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CineMax - Book Movie Tickets</title>
-  <link rel="stylesheet" href="style2.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CineMax - Book Movie Tickets</title>
+
+<link rel="stylesheet" href="style2.css">
+
 </head>
+
 <body>
 
-  <!-- ========== NAVBAR ========== -->
-  <nav class="navbar">
-    <div class="logo">🎬 Movie</div>
-    
-    <a href="index.html" class="btn-signin">Sign In</a>
-  </nav>
+<!-- NAVBAR -->
 
- 
-  
+<nav class="navbar">
+<div class="logo">🎬 Movie</div>
 
-  <!-- ========== NOW SHOWING ========== -->
-  <section class="section">
-    <div class="section-header">
-      <h2>Now Showing</h2>
-      <div class="filters">
-        <button class="filter active">All</button>
-        <button class="filter">Action</button>
-        <button class="filter">Drama</button>
-        <button class="filter">Comedy</button>
-        <button class="filter">Sci-Fi</button>
-      </div>
-    </div>
-
-    <div class="movies-grid">
-
-      
-
-      <a href="movie_card.html" class="movie-link">
-
-      <div class="movie-card">
-        <div class="movie-poster poster2">
-          <span class="rating">⭐ 7.2</span>
-        </div>
-        <h3>Silent Echoes</h3>
-        <p class="genre">Thriller • 1h 45m</p>
-        <div class="tags">
-          <span class="tag">2D</span>
-          <span class="tag">DOLBY</span>
-        </div>
-      </div>
-      </a>
-      
-    </div>
-  </section>
+<a href="index.html" class="btn-signin">Sign In</a>
+</nav>
 
 
-  <!-- ========== TOP RATED ========== -->
-  <section class="section">
-    <div class="section-header">
-      <h2>Top Rated⭐</h2>
-      <a href="#" class="view-all">View all →</a>
-    </div>
 
-    <div class="coming-grid">
+<!-- NOW SHOWING -->
 
-      <div class="coming-card">
-        <div class="coming-poster cp1">
-          <span class="rating">7.2</span>
-           </div>
-  
-          
-          <div class="movie-info">
-            <h3>The Last Horizon</h3>
-            <p>Thriller 1h 45m</p>
-          <div class="formats">
-          <span>2D</span>
-          <span>DOLBY</span>
-          </div>
-        </div>
-      </div>
+<section class="section">
 
-      <div class="coming-card">
-        <div class="coming-poster cp2">
-           <span class="rating">6.5</span>
-           </div>
-          
-          <div class="movie-info">
-             <h3>Pixel Adventures</h3>
-            <p>Thriller 1h 45m</p>
-          <div class="formats">
-          <span>2D</span>
-          <span>DOLBY</span>
-            
-            
-          </div>
-        </div>
-      </div>
+<div class="section-header">
 
-      <div class="coming-card">
-        <div class="coming-poster cp3">
-          <span class="rating">6.0</span>
-           </div>
-          
-          <div class="movie-info">
-             <h3>Midnight Manor</h3>
-            <p>Thriller 1h 45m</p>
-          <div class="formats">
-          <span>2D</span>
-          <span>DOLBY</span>
-            
-            
-          </div>
-        </div>
-      </div>
+<h2>Now Showing</h2>
 
-      <div class="coming-card">
-        <div class="coming-poster cp4">
-          <span class="rating">5.2</span>
-           </div>
-          
-          <div class="movie-info">
-             <h3>Holiday Heist</h3>
-            <p>Thriller 1h 45m</p>
-          <div class="formats">
-          <span>2D</span>
-          <span>DOLBY</span>
-            
-          </div>
-        </div>
-      </div>
+<div class="filters">
+<button class="filter active">All</button>
+<button class="filter">Action</button>
+<button class="filter">Drama</button>
+<button class="filter">Comedy</button>
+<button class="filter">Sci-Fi</button>
+</div>
 
-    </div>
-  </section>
+</div>
 
- 
+
+<div class="movies-grid" id="moviesContainer"></div>
+
+</section>
+
+
+
+<!-- TOP RATED -->
+
+<section class="section">
+
+<div class="section-header">
+
+<h2>Top Rated ⭐</h2>
+
+<a href="#" class="view-all">View all →</a>
+
+</div>
+<div class="movies-grid" id="topRatedContainer"></div>
+
+
+</section>
+
+
+
+<script src="movies.js"></script>
 
 </body>
 </html>
