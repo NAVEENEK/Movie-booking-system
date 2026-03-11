@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add New Movie</title>
+
+<link rel="stylesheet" href="admin_stylesheet/new_movie.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<h2>Add New Movie</h2>
+
+<a href="admin_home.html" class="back-btn">← Back</a>
+
+</header>
+
+<div class="container">
+
+<form class="movie-form">
+
+<div class="input-group">
+<label>Movie Name</label>
+<input type="text" placeholder="Enter movie name" required>
+</div>
+
+<div class="input-group">
+<label>Banner Image</label>
+<input type="file" accept="image/*">
+</div>
+
+<div class="input-group">
+<label>Duration</label>
+<input type="text" placeholder="Example: 2h 10m">
+</div>
+
+<div class="input-group">
+<label>Language</label>
+<select>
+<option>English</option>
+<option>Malayalam</option>
+<option>Hindi</option>
+<option>Tamil</option>
+<option>Telugu</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Genre</label>
+<select>
+<option>Action</option>
+<option>Comedy</option>
+<option>Drama</option>
+<option>Thriller</option>
+<option>Horror</option>
+<option>Sci-Fi</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Release Date</label>
+<input type="date">
+</div>
+
+<div class="input-group">
+<label>Available Format</label>
+<select>
+<option>2D</option>
+<option>3D</option>
+<option>IMAX</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Description</label>
+<textarea placeholder="Enter movie description"></textarea>
+</div>
+
+<button type="submit">Add Movie</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>
