@@ -1,0 +1,137 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+display:flex;
+justify-content:center;
+}
+
+.navbar{
+width:100%;
+padding:20px;
+background:#020617;
+text-align:center;
+position:fixed;
+top:0;
+}
+
+.container{
+margin-top:90px;
+width:700px;
+text-align:center;
+}
+
+/* MOVIE CARD */
+
+.movie-card{
+display:flex;
+align-items:center;
+background:#1e293b;
+padding:15px;
+border-radius:8px;
+margin-bottom:20px;
+}
+
+.movie-poster{
+width:90px;
+border-radius:6px;
+margin-right:15px;
+}
+
+.movie-details{
+text-align:left;
+}
+
+.rating{
+color:#facc15;
+margin:5px 0;
+}
+
+
+/* FORMAT BUTTON */
+
+.format-section{
+margin-bottom:20px;
+}
+
+.format-btn{
+padding:10px 20px;
+margin:5px;
+border:none;
+border-radius:6px;
+background:#374151;
+color:white;
+cursor:pointer;
+}
+
+.format-btn.active{
+background:#ff4d4d;
+}
+
+
+/* SCREEN */
+
+.screen{
+background:#e5e7eb;
+color:black;
+padding:10px;
+margin:20px 0;
+border-radius:5px;
+}
+
+
+/* SEATS */
+
+.seat-container{
+display:grid;
+grid-template-columns: repeat(10,1fr);
+gap:10px;
+margin-bottom:20px;
+}
+
+.seat{
+width:35px;
+height:35px;
+background:#1f2937;
+border-radius:5px;
+cursor:pointer;
+}
+
+.seat.selected{
+background:#ff4d4d;
+}
+
+.seat.booked{
+background:#6b7280;
+cursor:not-allowed;
+}
+
+
+/* SUMMARY */
+
+.summary{
+background:#1e293b;
+padding:20px;
+border-radius:8px;
+}
+
+.summary button{
+margin-top:15px;
+padding:12px;
+width:100%;
+background:#ff4d4d;
+border:none;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+.summary button:hover{
+background:#e11d48;
+}
