@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Movie Details</title>
+
+<link rel="stylesheet" href="user_stylesheet/movie_info.css">
+
+</head>
+
+<body>
+
+
+<header class="navbar">
+
+<div class="logo">🎬 CineRed</div>
+
+</header>
+
+
+
+<div class="movie-container">
+
+<img src="../images/oppenheimer.jpg" class="movie-banner">
+
+
+<div class="movie-details">
+
+<h1>Oppenheimer</h1>
+
+<p class="movie-meta">3h • Drama, History</p>
+
+<p class="movie-description">
+The story of J. Robert Oppenheimer and the creation of the atomic bomb.
+</p>
+
+<div class="rating">
+⭐ 4.7 / 5
+</div>
+
+<button class="primary-btn"
+onclick="window.location.href='movie_review.html'">
+
+View Reviews
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- FILTERS -->
+
+<div class="filter-section">
+
+<select id="districtSelect">
+
+<option value="">Select District</option>
+<option>Thiruvananthapuram</option>
+<option>Kollam</option>
+<option>Pathanamthitta</option>
+<option>Alappuzha</option>
+<option>Kottayam</option>
+<option>Idukki</option>
+<option>Ernakulam</option>
+<option>Thrissur</option>
+<option>Palakkad</option>
+<option>Malappuram</option>
+<option>Kozhikode</option>
+<option>Wayanad</option>
+<option>Kannur</option>
+<option>Kasaragod</option>
+
+</select>
+
+
+<input type="date" id="dateSelect">
+
+</div>
+
+
+
+<h2 class="section-title">Theaters Nearby</h2>
+
+<div id="theatreList"></div>
+
+
+<script src="user_script/movie_info.js"></script>
+
+</body>
+</html>
