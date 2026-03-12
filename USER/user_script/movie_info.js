@@ -30,7 +30,6 @@ times:["02:00 PM","06:00 PM"]
 ];
 
 
-
 /* REUSABLE THEATRE CARD */
 
 function createTheatreCard(theatre){
@@ -40,7 +39,6 @@ const formats = theatre.format.join(", ");
 const timesHTML = theatre.times.map(time =>
 `<span class="showtime">${time}</span>`
 ).join("");
-
 
 return `
 
@@ -114,6 +112,6 @@ displayTheatres(filtered);
 
 function openTheatre(id){
 
-window.location.href = `seat_selection.html?theatre=${id}`;
+window.location.href = `booking.html?theatre=${id}`;
 
 }

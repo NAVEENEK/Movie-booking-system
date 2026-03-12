@@ -153,3 +153,13 @@ border-radius:6px;
 font-size:14px;
 
 }
+.theatre-type{
+color:#d0d0d0;
+margin-bottom:10px;
+font-size:14px;
+}
+.action-buttons{
+display:flex;
+gap:12px;
+margin-top:15px;
+}
