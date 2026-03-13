@@ -1,0 +1,165 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
+}
+
+body{
+background:#2a0000;
+color:#f5f5f5;
+}
+
+
+
+/* NAVBAR */
+
+.navbar{
+padding:20px 40px;
+background:#7a0000;
+font-size:20px;
+font-weight:bold;
+}
+
+
+
+/* MOVIE SECTION */
+
+.movie-container{
+display:flex;
+gap:40px;
+padding:40px;
+align-items:center;
+}
+
+.movie-banner{
+width:250px;
+border-radius:10px;
+}
+
+.movie-details h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.movie-meta{
+color:#d9d9d9;
+margin-bottom:15px;
+}
+
+.movie-description{
+max-width:500px;
+margin-bottom:20px;
+color:#d0d0d0;
+}
+
+.rating{
+margin-bottom:15px;
+}
+
+
+
+/* RED BUTTON */
+
+.primary-btn{
+padding:10px 20px;
+background:#ff4d4d;
+border:none;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+.primary-btn:hover{
+background:#ff1a1a;
+}
+
+
+
+/* FILTERS */
+
+.filter-section{
+display:flex;
+gap:15px;
+padding:0 40px;
+margin-bottom:20px;
+}
+
+.filter-section select,
+.filter-section input{
+
+padding:10px 14px;
+border-radius:6px;
+border:none;
+background:#ff4d4d;
+color:white;
+cursor:pointer;
+
+}
+
+
+
+/* THEATRE LIST */
+
+.section-title{
+padding:20px 40px;
+}
+
+#theatreList{
+padding:0 40px 40px 40px;
+}
+
+
+
+/* THEATRE CARD */
+
+.theatre-card{
+
+background:#5b0000;
+padding:20px;
+border-radius:10px;
+margin-bottom:20px;
+cursor:pointer;
+transition:0.2s;
+
+}
+
+.theatre-card:hover{
+
+background:#720000;
+
+}
+
+.theatre-info{
+color:#d0d0d0;
+margin-bottom:12px;
+}
+
+
+
+/* SHOWTIMES */
+
+.showtimes{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+}
+
+.showtime{
+
+background:#ff4d4d;
+padding:8px 14px;
+border-radius:6px;
+font-size:14px;
+
+}
+.theatre-type{
+color:#d0d0d0;
+margin-bottom:10px;
+font-size:14px;
+}
+.action-buttons{
+display:flex;
+gap:12px;
+margin-top:15px;
+}

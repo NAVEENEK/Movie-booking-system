@@ -1,0 +1,228 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:#020617;
+}
+
+.logo{
+font-size:20px;
+font-weight:bold;
+}
+
+.btn-signin{
+background:#ef4444;
+padding:8px 16px;
+border-radius:6px;
+text-decoration:none;
+color:white;
+}
+
+
+
+/* SECTION */
+
+.section{
+padding:40px;
+}
+
+.section-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+
+
+/* FILTER BUTTONS */
+
+.filters{
+display:flex;
+gap:10px;
+}
+
+.filter{
+padding:6px 14px;
+border:none;
+border-radius:20px;
+background:#1e293b;
+color:white;
+cursor:pointer;
+}
+
+.filter.active{
+background:#ef4444;
+}
+
+
+
+/* MOVIE GRID */
+
+.movies-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+gap:20px;
+}
+
+
+
+/* MOVIE CARD */
+
+.movie-card{
+background:#020617;
+border-radius:10px;
+padding:10px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.movie-card:hover{
+transform:scale(1.05);
+}
+
+
+
+/* POSTER */
+
+.movie-poster{
+height:260px;
+border-radius:8px;
+background-size:cover;
+background-position:center;
+position:relative;
+}
+
+
+
+/* Dummy Poster Colors */
+
+.poster1{
+background:#7c3aed;
+}
+
+.poster2{
+background:#2563eb;
+}
+
+.poster3{
+background:#16a34a;
+}
+
+.poster4{
+background:#f59e0b;
+}
+
+
+
+/* RATING */
+
+.rating{
+position:absolute;
+top:8px;
+right:8px;
+background:black;
+padding:4px 6px;
+border-radius:4px;
+font-size:12px;
+}
+
+
+
+/* MOVIE INFO */
+
+.movie-card h3{
+margin-top:10px;
+font-size:16px;
+}
+
+.genre{
+font-size:13px;
+color:#94a3b8;
+margin:5px 0;
+}
+
+
+
+/* TAGS */
+
+.tags{
+display:flex;
+gap:6px;
+}
+
+.tag{
+background:#1e293b;
+padding:4px 8px;
+border-radius:6px;
+font-size:11px;
+}
+
+
+
+/* TOP RATED */
+
+.coming-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+gap:20px;
+}
+
+.coming-card{
+background:#020617;
+border-radius:10px;
+overflow:hidden;
+}
+
+.coming-poster{
+height:140px;
+background:#334155;
+position:relative;
+}
+
+.movie-info{
+padding:10px;
+}
+
+.formats span{
+background:#1e293b;
+padding:4px 8px;
+border-radius:6px;
+font-size:11px;
+margin-right:5px;
+}
+.movie-card{
+background:#0b1b35;
+border-radius:12px;
+overflow:hidden;
+cursor:pointer;
+transition:0.3s;
+}
+
+.movie-card img{
+width:100%;
+height:260px;
+object-fit:cover;
+display:block;
+}
+
+.movie-info{
+padding:15px;
+}
