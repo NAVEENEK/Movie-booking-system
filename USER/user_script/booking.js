@@ -12,6 +12,10 @@ for(let i=1;i<=60;i++){
 
 const seat=document.createElement("div")
 seat.classList.add("seat")
+const row = String.fromCharCode(65 + Math.floor((i-1)/10))
+const number = ((i-1)%10) + 1
+
+seat.innerText = row + number
 
 if(bookedSeats.includes(i)){
 seat.classList.add("booked")
