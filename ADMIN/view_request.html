@@ -14,30 +14,16 @@
 <div class="container">
 
 <div class="search-box">
-<input type="text" placeholder="Search theatre request">
+<input type="text" id="searchInput" placeholder="Search theatre request">
 </div>
 
-<ul class="request-list">
-
-<li onclick="location.href='theatre_request_details.html'">
-CineWorld Multiplex
-</li>
-
-<li onclick="location.href='theatre_request_details.html'">
-Galaxy Cinemas
-</li>
-
-<li onclick="location.href='theatre_request_details.html'">
-Dream Screens
-</li>
-
-<li onclick="location.href='theatre_request_details.html'">
-Royal Theatre
-</li>
-
+<ul class="request-list" id="requestList">
+<!-- Theatre requests will be inserted here -->
 </ul>
 
 </div>
+
+<script src="admin_script/view_request.js"></script>
 
 </body>
 </html>
