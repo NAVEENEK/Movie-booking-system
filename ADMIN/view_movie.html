@@ -25,16 +25,23 @@
 <th>Movie Name</th>
 <th>Genre</th>
 <th>Duration</th>
+<th>Action</th>
+
 </tr>
 </thead>
 
 <tbody>
+    
 
 <tr>
 <td>M001</td>
 <td>Silent Echoes</td>
 <td>Thriller</td>
 <td>1h 45m</td>
+<td>
+<a href="edit_movie.html" class="edit">✏️</a>
+<button class="delete-btn" onclick="deleteMovie()">🗑️</button>
+</td>
 </tr>
 
 <tr>
@@ -42,6 +49,10 @@
 <td>Midnight Manor</td>
 <td>Horror</td>
 <td>2h</td>
+<td>
+<a href="edit_movie.html" class="edit">✏️</a>
+<button class="delete-btn" onclick="deleteMovie()">🗑️</button>
+</td>
 </tr>
 
 <tr>
@@ -49,6 +60,11 @@
 <td>Holiday Heist</td>
 <td>Comedy</td>
 <td>1h 50m</td>
+<td>
+    <a href="edit_movie.html" class="edit">✏️</a>
+<button class="delete-btn" onclick="deleteMovie()">🗑️</button>
+
+</td>
 </tr>
 
 </tbody>
@@ -56,6 +72,10 @@
 </table>
 
 </div>
-
+<script>
+function deleteMovie(){
+    alert("Movie deleted successfully");
+}
+</script>
 </body>
 </html>
