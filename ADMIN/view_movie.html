@@ -14,7 +14,7 @@
 <div class="container">
 
 <div class="search-box">
-<input type="text" id="searchInput" placeholder="Search movie by name">
+<input type="text" placeholder="Search movie by name">
 </div>
 
 <table>
@@ -26,18 +26,56 @@
 <th>Genre</th>
 <th>Duration</th>
 <th>Action</th>
+
 </tr>
 </thead>
 
-<tbody id="movieTableBody">
-<!-- Movies will be inserted here dynamically -->
+<tbody>
+    
+
+<tr>
+<td>M001</td>
+<td>Silent Echoes</td>
+<td>Thriller</td>
+<td>1h 45m</td>
+<td>
+<a href="edit_movie.html" class="edit">✏️</a>
+<button class="delete-btn" onclick="deleteMovie()">🗑️</button>
+</td>
+</tr>
+
+<tr>
+<td>M002</td>
+<td>Midnight Manor</td>
+<td>Horror</td>
+<td>2h</td>
+<td>
+<a href="edit_movie.html" class="edit">✏️</a>
+<button class="delete-btn" onclick="deleteMovie()">🗑️</button>
+</td>
+</tr>
+
+<tr>
+<td>M003</td>
+<td>Holiday Heist</td>
+<td>Comedy</td>
+<td>1h 50m</td>
+<td>
+    <a href="edit_movie.html" class="edit">✏️</a>
+<button class="delete-btn" onclick="deleteMovie()">🗑️</button>
+
+</td>
+</tr>
+
 </tbody>
 
 </table>
 
 </div>
-
-<script src="admin_script/view_movie.js"></script>
-
+<script>
+function deleteMovie(){
+    alert("Movie deleted successfully");
+}
+</script>
 </body>
 </html>
