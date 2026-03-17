@@ -69,7 +69,7 @@ theatreTableBody.appendChild(row);
 // Button redirect
 function viewTheatre(theatreId){
 
-window.location.href = `theatre_details.html?id=${theatreId}`;
+window.location.href = `../THEATRE/theatre_details.html?id=${theatreId}`;
 
 }
 
