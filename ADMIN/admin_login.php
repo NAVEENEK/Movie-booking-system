@@ -1,7 +1,6 @@
 <?php
 
-$passkey = $_POST['passkey'] ;
-$passkey = $_POST['passkey'];
+$passkey = $_POST['passkey'] 
 $admin_pass = "1234";
 
 if ($passkey === "$admin_pass") {
