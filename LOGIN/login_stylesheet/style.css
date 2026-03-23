@@ -4,14 +4,16 @@
   box-sizing: border-box;
   font-family: 'Times New Roman', Times, serif;
 }
+
 body {
   background: whitesmoke;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 60px;
 }
+
+/* FORM CARD */
 form {
   background: #ffffff;
   padding: 30px 35px;
@@ -19,30 +21,46 @@ form {
   border-radius: 25px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
-h2 {
+
+/* TITLE */
+h1 {
+  position: absolute;
+  top: 40px;
   text-align: center;
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 24px;
+  width: 100%;
 }
+
+/* LABELS */
 label {
   font-weight: bold;
   display: block;
+  margin-top: 10px;
   margin-bottom: 3px;
 }
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="date"] {
+
+/* ALL INPUTS FIXED */
+input,
+textarea,
+select {
   width: 100%;
   padding: 9px;
   margin-bottom: 8px;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
+
+/* TEXTAREA SPECIFIC */
+textarea {
+  resize: none;
+}
+
+/* RADIO (if used anywhere) */
 input[type="radio"] {
+  width: auto;
   margin-right: 5px;
 }
+
+/* BUTTON */
 button {
   width: 100%;
   padding: 10px;
@@ -53,22 +71,29 @@ button {
   border-radius: 8px;
   cursor: pointer;
 }
+
 button:hover {
   background-color: #333;
-
 }
+
+/* LINK TEXT */
 .register-text {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
 }
 
 .register-text a {
-    color: blue;
-    text-decoration: none;
-    font-weight: bold;
+  color: blue;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .register-text a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+/* DROPDOWN CURSOR */
+select {
+  cursor: pointer;
 }
