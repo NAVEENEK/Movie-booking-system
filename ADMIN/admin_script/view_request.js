@@ -1,27 +1,11 @@
-// Dummy theatre request data (later from database)
+fetch('../admin_backend/get_request.php')
+.then(response => response.json())
+.then(data => {
+    displayTheatres(data);
 
-const theatreRequests = [
-{
-id: "T001",
-name: "CineWorld Multiplex"
-},
-
-{
-id: "T002",
-name: "Galaxy Cinemas"
-},
-
-{
-id: "T003",
-name: "Dream Screens"
-},
-
-{
-id: "T004",
-name: "Royal Theatre"
-}
-
-];
+    // attach search after data is loaded
+    setupSearch(data);
+});
 
 
 const requestList = document.getElementById("requestList");
@@ -29,40 +13,49 @@ const searchInput = document.getElementById("searchInput");
 
 
 // Build request list
-function loadRequests(data){
+function displayTheatres(data){
 
-requestList.innerHTML = "";
+    requestList.innerHTML = ""; // clear old content
 
-data.forEach(theatre => {
+    if(data.length === 0){
+        requestList.innerHTML = "No pending requests";
+        return;
+    }
 
-const li = document.createElement("li");
+    data.forEach(theatre => {
 
-li.textContent = theatre.name;
+        let div = document.createElement("div");
+        div.className = "card";
 
-li.onclick = () => {
-window.location.href = `request_detail.html?id=${theatre.id}`;
-};
+        div.innerHTML = `
+            <h3>${theatre.theatre_name}</h3>
+            <button onclick="goToDetails(${theatre.theatre_id})">
+                View
+            </button>
+        `;
 
-requestList.appendChild(li);
-
-});
-
+        requestList.appendChild(div);
+    });
 }
 
 
-// Search functionality
-searchInput.addEventListener("input", function(){
-
-const searchText = this.value.toLowerCase();
-
-const filtered = theatreRequests.filter(theatre =>
-theatre.name.toLowerCase().includes(searchText)
-);
-
-loadRequests(filtered);
-
-});
+// Navigation
+function goToDetails(id){
+    window.location.href = `request_detail.html?id=${id}`;
+}
 
 
-// Initial load
-loadRequests(theatreRequests);
+// Search 
+function setupSearch(originalData){
+
+    searchInput.addEventListener("input", function(){
+
+        const searchText = this.value.toLowerCase();
+
+        const filtered = originalData.filter(theatre =>
+            theatre.theatre_name.toLowerCase().includes(searchText)
+        );
+
+        displayTheatres(filtered);
+    });
+}
