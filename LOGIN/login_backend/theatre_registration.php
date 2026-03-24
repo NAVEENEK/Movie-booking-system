@@ -22,8 +22,8 @@ $sql = "INSERT INTO theatre (theatre_name,owner_name,license_number,address,pass
 
 //execute the query 
 if(mysqli_query($conn, $sql)){
-  header("Location:../../THEATRE/waiting.html");
-  exit();
+ header("Location: /movie_booking/THEATRE/waiting.html");
+exit();
 }
 else{
   echo "Error:". mysqli_error($conn);
