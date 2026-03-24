@@ -1,4 +1,4 @@
-fetch('../admin_backend/get_request.php')
+fetch('admin_backend/get_request.php')
 .then(response => response.json())
 .then(data => {
     displayTheatres(data);
