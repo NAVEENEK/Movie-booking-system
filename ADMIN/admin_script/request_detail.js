@@ -1,59 +1,69 @@
-// Get ID from URL
+// Get theatre ID from URL
 const params = new URLSearchParams(window.location.search);
-const theatreId = params.get("theatre_id");
+const theatreId = params.get("id");
 
-// Fetch request data from PHP
-fetch("../admin_backend/request_detail?id=" + theatreId)
-.then(response => response.json())
-.then(request => {
-
-  if (!request) {
-    alert("Request not found");
-    return;
-  }
-
-  // Display data
-  document.getElementById("theatreName").textContent = request.name;
-  document.getElementById("ownerName").textContent = request.owner;
-  document.getElementById("email").textContent = request.email;
-  document.getElementById("type").textContent = request.type;
-  document.getElementById("ac").textContent = request.ac;
-  document.getElementById("capacity").textContent = request.capacity;
-  document.getElementById("location").textContent = request.location;
-
-})
-.catch(error => {
-  console.error("Error:", error);
-});
-
-
-// APPROVE REQUEST
-function approveRequest(){
-
-fetch("../../php/approve_theatre.php?id=" + theatreId)
-.then(res => res.text())
-.then(data => {
-
-  alert("Theatre Approved");
-  window.location.href = "../ADMIN/view_request.html";
-
-})
-.catch(error => console.error(error));
-
+// If no ID → error
+if (!theatreId) {
+    alert("No request ID provided");
 }
 
 
-// REJECT REQUEST
-function rejectRequest(){
+// Fetch theatre details from backend
+fetch(`/movie_booking/ADMIN/admin_backend/request_detail.php?id=${theatreId}`)
+    .then(response => response.json())
+    .then(data => {
 
-fetch("../../php/reject_theatre.php?id=" + theatreId)
-.then(res => res.text())
-.then(data => {
+        console.log(data); // debug
 
-  alert("Theatre Request Rejected");
-  window.location.href = "../ADMIN/view_request.html";
+        // Fill data into HTML
+        document.getElementById("theatreName").innerText = data.name;
+        document.getElementById("ownerName").innerText = data.owner;
+        document.getElementById("license").innerText = data.license;
+        document.getElementById("type").innerText = data.type;
+        document.getElementById("ac").innerText = data.ac;
+        document.getElementById("capacity").innerText = data.seats;
+        document.getElementById("location").innerText = data.address;
 
-})
-.catch(error => console.error(error));
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Failed to load data");
+    });
 
+
+// APPROVE FUNCTION
+function approveRequest() {
+    console.log("Approve clicked, ID:", theatreId);
+
+    fetch("/movie_booking/ADMIN/admin_backend/update_request.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `id=${theatreId}&status=approved`
+    })
+    .then(res => res.text())
+    .then(data => {
+        console.log("Server response:", data);
+        window.location.href = "view_request.html";
+    })
+    .catch(err => console.error("Fetch error:", err));
+}
+
+
+// REJECT FUNCTION
+function rejectRequest() {
+
+    fetch("/movie_booking/ADMIN/admin_backend/update_request.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `id=${theatreId}&status=rejected`
+    })
+    .then(res => res.text())
+    .then(data => {
+        console.log("Server response:", data);
+        window.location.href = "view_request.html";
+    });
 }
