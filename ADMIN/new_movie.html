@@ -25,31 +25,31 @@
 
 <div class="container">
 
-<form class="movie-form">
+  <form class="movie-form" action="admin_backend/new_movie.php" method="post" enctype="multipart/form-data">
 
 <div class="input-group">
 <label>Movie Name</label>
-<input type="text" placeholder="Enter movie name" required>
+<input type="text" name="title" placeholder="Enter movie name" required>
 </div>
 
 <div class="input-group">
 <label>Banner Image</label>
-<input type="file" accept="image/*">
+<input type="file" name="poster" accept="image/*" required>
 </div>
 
 <div class="input-group">
 <label>Rating</label>
-<input type="text" >
+<input type="text" name="rating">
 </div>
 
 <div class="input-group">
 <label>Duration</label>
-<input type="text" >
+<input type="text" name="duration">
 </div>
 
 <div class="input-group">
 <label>Language</label>
-<select>
+<select name="language">
 <option>English</option>
 <option>Malayalam</option>
 <option>Hindi</option>
@@ -60,7 +60,7 @@
 
 <div class="input-group">
 <label>Genre</label>
-<select>
+<select name="genre">
 <option>Action</option>
 <option>Comedy</option>
 <option>Drama</option>
@@ -72,26 +72,28 @@
 
 <div class="input-group">
 <label>Release Date</label>
-<input type="date">
+<input type="date" name="release_date">
 </div>
 
 <div class="input-group">
 <label>Available Format</label>
-<select>
+<select name="format">
 <option>2D</option>
 <option>3D</option>
 <option>IMAX</option>
+<option>4DX</option> 
 </select>
 </div>
 
 <div class="input-group">
 <label>Description</label>
-<textarea placeholder="Enter movie description"></textarea>
+<textarea name="description" placeholder="Enter movie description"></textarea>
 </div>
 
 <button type="submit">Add Movie</button>
 
 </form>
+
 
 </div>
 
