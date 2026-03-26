@@ -1,117 +1,88 @@
-const theatres = [
+// GET movie_id FROM URL
+const urlParams = new URLSearchParams(window.location.search);
+const movie_id = urlParams.get("id");
 
-{
-id:1,
-name:"Cinemark Central",
-district:"Ernakulam",
-format:["2D","3D"],
-ac:"AC",
-times:["01:00 PM","04:00 PM","09:00 PM"]
-},
 
-{
-id:2,
-name:"PVR Lulu Mall",
-district:"Ernakulam",
-format:["2D","IMAX"],
-ac:"AC",
-times:["11:00 AM","03:00 PM","07:00 PM"]
-},
+/* FETCH THEATRES FROM BACKEND */
 
-{
-id:3,
-name:"Kairali Theatre",
-district:"Thiruvananthapuram",
-format:["2D"],
-ac:"Non AC",
-times:["02:00 PM","06:00 PM"]
+function loadTheatres() {
+
+    const district = document.getElementById("districtSelect").value;
+    const date = document.getElementById("dateSelect").value;
+
+    // API CALL
+    fetch(`user_backend/movie_info.php?movie_id=${movie_id}&district=${district}&date=${date}`)
+    .then(response => response.json())
+    .then(data => {
+        displayTheatres(data);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+
 }
 
-];
 
-
-/* REUSABLE THEATRE CARD */
+/* CREATE THEATRE CARD */
 
 function createTheatreCard(theatre){
 
-const formats = theatre.format.join(", ");
+    const formats = theatre.format;
+    const timesHTML = theatre.times.map(time =>
+        `<span class="showtime">${time}</span>`
+    ).join("");
 
-const timesHTML = theatre.times.map(time =>
-`<span class="showtime">${time}</span>`
-).join("");
+    return `
+    <div class="theatre-card" onclick="openTheatre(${theatre.theatre_id})">
 
-return `
+        <h3>${theatre.theatre_name}</h3>
 
-<div class="theatre-card" onclick="openTheatre(${theatre.id})">
+        <p class="theatre-type">${formats} | ${theatre.ac_type}</p>
 
-<h3>${theatre.name}</h3>
+        <div class="showtimes">
+            ${timesHTML}
+        </div>
 
-<p class="theatre-type">${formats} | ${theatre.ac}</p>
-
-<div class="showtimes">
-${timesHTML}
-</div>
-
-</div>
-
-`;
-
+    </div>
+    `;
 }
 
 
-
-/* BUILD THE LIST */
+/* DISPLAY */
 
 function displayTheatres(list){
 
-const container = document.getElementById("theatreList");
+    const container = document.getElementById("theatreList");
 
-container.innerHTML = "";
+    container.innerHTML = "";
 
-list.forEach(theatre => {
+    if(list.length === 0){
+        container.innerHTML = "<p>No shows available</p>";
+        return;
+    }
 
-container.innerHTML += createTheatreCard(theatre);
-
-});
-
-}
-
-
-
-/* INITIAL LOAD */
-
-displayTheatres(theatres);
-
-
-
-/* DISTRICT FILTER */
-
-document
-.getElementById("districtSelect")
-.addEventListener("change", filterTheatres);
-
-
-
-function filterTheatres(){
-
-const district = document.getElementById("districtSelect").value;
-
-let filtered = theatres;
-
-if(district !== ""){
-filtered = theatres.filter(t => t.district === district);
-}
-
-displayTheatres(filtered);
+    list.forEach(theatre => {
+        container.innerHTML += createTheatreCard(theatre);
+    });
 
 }
 
 
+/* EVENT LISTENERS */
 
-/* CLICK THEATRE */
+document.getElementById("districtSelect")
+.addEventListener("change", loadTheatres);
+
+document.getElementById("dateSelect")
+.addEventListener("change", loadTheatres);
+
+
+/* INITIAL LOAD (optional) */
+loadTheatres();
+
+
+/* CLICK */
 
 function openTheatre(id){
-
-window.location.href = `booking.html?theatre=${id}`;
-
+    window.location.href = `booking.html?theatre=${id}&movie=${movie_id}`;
 }

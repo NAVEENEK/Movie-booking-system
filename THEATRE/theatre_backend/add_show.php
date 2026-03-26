@@ -1,45 +1,44 @@
 <?php
 session_start();
-include("../../db.php");
+require("../../db.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (!isset($_SESSION['theatre_id'])) {
+    die("Access denied. Please login.");
+}
 
-    $movie_id = $_POST['movie_id'];
-    $show_date = $_POST['show_date'];
-    $show_time = $_POST['show_time'];
-    $ticket_price = $_POST['ticket_price'];
-    $total_seat = $_POST['total_seat'];
-    $format = $_POST['format'];
+$theatre_id = $_SESSION['theatre_id'];
 
-    // TEMP (later replace with session)
-    $theatre_id = 2;
+// GET DATA
+$movie_id = $_POST['movie_id'] ?? '';
+$show_time_input = $_POST['show_time'] ?? '';
+$show_date_input = $_POST['show_date'] ?? '';
+$price = $_POST['ticket_price'] ?? '';
 
-    // Check theatre exists
-    $checkTheatre = $conn->query("SELECT theatre_id FROM theatre WHERE theatre_id = '$theatre_id'");
-    if ($checkTheatre->num_rows == 0) {
-        die("Invalid theatre_id");
-    }
+// VALIDATION
+if (
+    empty($movie_id) ||
+    empty($show_time_input) ||
+    empty($show_date_input) ||
+    empty($price)
+) {
+    die("All fields are required");
+}
 
-    // Check movie exists
-    $checkMovie = $conn->query("SELECT movie_id FROM movie WHERE movie_id = '$movie_id'");
-    if ($checkMovie->num_rows == 0) {
-        die("Invalid movie_id");
-    }
+// FORMAT DATA
+$show_time = date("H:i:s", strtotime($show_time_input)); // 24hr format
+$show_date = date("Y-m-d", strtotime($show_date_input)); // safe date format
 
-    // Insert into `show`
-    $sql = "INSERT INTO `show`
-    (movie_id, theatre_id, show_date, show_time, ticket_price, total_seat, format)
-    VALUES
-    ('$movie_id', '$theatre_id', '$show_date', '$show_time', '$ticket_price', '$total_seat', '$format')";
+// INSERT QUERY
+$sql = "INSERT INTO `show` 
+(movie_id, theatre_id, show_time, show_date, ticket_price)
+VALUES 
+('$movie_id', '$theatre_id', '$show_time', '$show_date', '$price')";
 
-    if ($conn->query($sql)) {
-        header("Location: ../add_movie.php?success=1");
-        exit();
-    } else {
-        echo "Error: " . $conn->error;
-    }
-
+// EXECUTE
+if ($conn->query($sql)) {
+    header("Location: ../theatre_home.php");
+    exit();
 } else {
-    echo "Invalid request";
+    echo "Error: " . $conn->error;
 }
 ?>

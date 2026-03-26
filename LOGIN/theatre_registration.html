@@ -10,7 +10,7 @@
 
 <body>
 
-<h1>REGISTER YOUR THEATRE</h1>
+
 
 <div class="container">
     <form action="login_backend/theatre_registration.php" method="post">
@@ -26,6 +26,25 @@
 
         <label>Address:</label>
         <textarea name="address" rows="4" placeholder="Building no, Street, City, State, Pincode" required></textarea>
+
+<label>District:</label>
+<select name="district" required>
+    <option value="">Select District</option>
+    <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+    <option value="Kollam">Kollam</option>
+    <option value="Pathanamthitta">Pathanamthitta</option>
+    <option value="Alappuzha">Alappuzha</option>
+    <option value="Kottayam">Kottayam</option>
+    <option value="Idukki">Idukki</option>
+    <option value="Ernakulam">Ernakulam</option>
+    <option value="Thrissur">Thrissur</option>
+    <option value="Palakkad">Palakkad</option>
+    <option value="Malappuram">Malappuram</option>
+    <option value="Kozhikode">Kozhikode</option>
+    <option value="Wayanad">Wayanad</option>
+    <option value="Kannur">Kannur</option>
+    <option value="Kasaragod">Kasaragod</option>
+</select>
 
         <!-- NEW FIELD -->
         <label>Theatre Type:</label>
