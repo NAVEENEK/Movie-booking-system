@@ -1,55 +1,29 @@
-// MOVIE DATA (temporary - later this will come from database)
+const moviesContainer = document.getElementById("moviesContainer");
+const topRatedContainer = document.getElementById("topRatedContainer");
 
-//for movie card on home page
+let allNowShowing = [];
+let allTopRated = [];
 
-const movies = [
+/* ===============================
+FETCH MOVIES FROM PHP
+================================ */
 
-{
-id:1,
-name:"Dune: Part Two",
-genre:"Sci-Fi",
-rating:4.8,
-poster:"../IMAGE/download.jpg",
-topRated:true
-},
+async function fetchMovies() {
+    try {
+        const response = await fetch("user_backend/movie_card.php");
+        const data = await response.json();
 
-{
-id:2,
-name:"Oppenheimer",
-genre:"Drama",
-rating:4.7,
-poster:"../IMAGE/download.jpg",
-topRated:true
-},
+        console.log(data); // debug
 
-{
-id:3,
-name:"Avengers: Endgame",
-genre:"Action",
-rating:4.6,
-poster:"../IMAGE/download.jpg",
-topRated:false
-},
+        allNowShowing = data.nowShowing;
+        allTopRated = data.topRated;
 
-{
-id:4,
-name:"Interstellar",
-genre:"Sci-Fi",
-rating:4.9,
-poster:"../IMAGE/download.jpg",
-topRated:true
-},
+        loadMovies(allNowShowing, allTopRated);
 
-{
-id:5,
-name:"Joker",
-genre:"Drama",
-rating:4.5,
-poster:"../IMAGE/download.jpg",
-topRated:false
+    } catch (error) {
+        console.error("Error fetching movies:", error);
+    }
 }
-
-];
 
 
 /* ===============================
@@ -57,9 +31,7 @@ OPEN MOVIE PAGE
 ================================ */
 
 function openMovie(id){
-
-window.location.href = "movie_info.html?id=" + id;
-
+    window.location.href = "movie_info.html?id=" + id;
 }
 
 
@@ -67,88 +39,65 @@ window.location.href = "movie_info.html?id=" + id;
 LOAD MOVIES
 ================================ */
 
-const moviesContainer = document.getElementById("moviesContainer");
-const topRatedContainer = document.getElementById("topRatedContainer");
+function loadMovies(nowShowing, topRated){
 
+    moviesContainer.innerHTML="";
+    topRatedContainer.innerHTML="";
 
-function loadMovies(filter="All"){
+    // NOW SHOWING
+    nowShowing.forEach(movie => {
+        moviesContainer.innerHTML += `
+        <div class="movie-card" onclick="openMovie(${movie.show_id})">
+            <img src="${movie.poster}">
+            <div class="movie-info">
+                <h3>${movie.movie_name}</h3>
+                <p>${movie.genre}</p>
+                <span>⭐ ${movie.rating}</span>
+            </div>
+        </div>
+        `;
+    });
 
-moviesContainer.innerHTML="";
-topRatedContainer.innerHTML="";
-
-movies.forEach(movie =>{
-
-if(filter==="All" || movie.genre===filter){
-
-moviesContainer.innerHTML += `
-
-<div class="movie-card" onclick="openMovie(${movie.id})">
-
-<img src="${movie.poster}" alt="${movie.name}">
-
-<div class="movie-info">
-
-<h3>${movie.name}</h3>
-
-<p>${movie.genre}</p>
-
-<span>⭐ ${movie.rating}</span>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-if(movie.topRated){
-
-topRatedContainer.innerHTML += `
-
-<div class="movie-card" onclick="openMovie(${movie.id})">
-
-<img src="${movie.poster}" alt="${movie.name}">
-
-<div class="movie-info">
-
-<h3>${movie.name}</h3>
-
-<p>${movie.genre}</p>
-
-<span>⭐ ${movie.rating}</span>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-});
+    // TOP RATED
+    topRated.forEach(movie => {
+        topRatedContainer.innerHTML += `
+        <div class="movie-card" onclick="openMovie(${movie.show_id})">
+            <img src="${movie.poster}">
+            <div class="movie-info">
+                <h3>${movie.movie_name}</h3>
+                <p>${movie.genre}</p>
+                <span>⭐ ${movie.rating}</span>
+            </div>
+        </div>
+        `;
+    });
 
 }
 
 
 /* ===============================
-FILTER BUTTONS
+FILTER BUTTONS (FIXED)
 ================================ */
 
 const filters = document.querySelectorAll(".filter");
 
 filters.forEach(button =>{
 
-button.addEventListener("click",()=>{
+    button.addEventListener("click",()=>{
 
-filters.forEach(btn=>btn.classList.remove("active"));
+        filters.forEach(btn=>btn.classList.remove("active"));
+        button.classList.add("active");
 
-button.classList.add("active");
+        const genre = button.innerText;
 
-loadMovies(button.innerText);
+        if(genre === "All"){
+            loadMovies(allNowShowing, allTopRated);
+        } else {
+            const filtered = allNowShowing.filter(movie => movie.genre === genre);
+            loadMovies(filtered, allTopRated); // topRated stays same
+        }
 
-});
+    });
 
 });
 
@@ -157,4 +106,4 @@ loadMovies(button.innerText);
 INITIAL LOAD
 ================================ */
 
-loadMovies();
+fetchMovies();

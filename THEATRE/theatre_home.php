@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['theatre_id'])) {
+    die("Please login first");
+}
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">

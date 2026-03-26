@@ -1,39 +1,43 @@
 <?php
+session_start();
+include("../../db.php");
 
-include "../../db.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$license = $_POST['license'];
-$password = $_POST['password'];
+    $license = $_POST['license'];
+    $password = $_POST['password'];
 
-$sql = "SELECT * FROM theatre WHERE license_number='$license'";
-$result = $conn->query($sql);
+    $sql = "SELECT * FROM theatre WHERE license_number='$license'";
+    $result = $conn->query($sql);
 
-if($result->num_rows > 0){
+    if ($result->num_rows > 0) {
 
-    $row = $result->fetch_assoc();
+        $row = $result->fetch_assoc();
 
-    if($password == $row['password']){
+        // check password
+        if ($password == $row['password']) {
 
-        if($row['status'] == "pending"){
-            header("Location: ../../THEATRE/waiting.html");
-            exit();
-        }
+            // check approval
+            if ($row['status'] == "approved") {
 
-        elseif($row['status'] == "approved"){
-            header("Location: ../../THEATRE/theatre_home.html");
-            exit();
-        }
+                // ✅ STORE theatre_id IN SESSION
+                $_SESSION['theatre_id'] = $row['theatre_id'];
+                $_SESSION['theatre_name'] = $row['name'];
 
-        elseif($row['status'] == "rejected"){
-            header("Location: ../../THEATRE/rejected.html");
-            exit();
+                // redirect to dashboard
+                header("Location: ../../THEATRE/theatre_home.php");
+                exit();
+
+            } else {
+                echo "Your account is not approved yet.";
+            }
+
+        } else {
+            echo "Invalid password.";
         }
 
     } else {
-        echo "Invalid password";
+        echo "Theatre not found.";
     }
-
-} else {
-    echo "Invalid license number";
 }
 ?>
