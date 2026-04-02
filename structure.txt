@@ -1,0 +1,97 @@
+Folder PATH listing for volume OS
+Volume serial number is 3C86-7AE7
+C:.
+¦   db.php
+¦   structure.txt
+¦   
++---ADMIN
+¦   ¦   admin_home.html
+¦   ¦   new_movie.html
+¦   ¦   request_detail.html
+¦   ¦   view_movie.html
+¦   ¦   view_request.html
+¦   ¦   view_theatre.html
+¦   ¦   
+¦   +---admin_backend
+¦   ¦       get_request.php
+¦   ¦       new_movie.php
+¦   ¦       request_detail.php
+¦   ¦       update_request.php
+¦   ¦       
+¦   +---admin_script
+¦   ¦       request_detail.js
+¦   ¦       view_movie.js
+¦   ¦       view_request.js
+¦   ¦       view_theatre.js
+¦   ¦       
+¦   +---admin_stylesheet
+¦           admin_home.css
+¦           new_movie.css
+¦           request_detail.css
+¦           view_movie_theatre.css
+¦           view_request.css
+¦           
++---database
+¦       movie_booking_system.sql
+¦       
++---IMAGE
+¦       download.jpg
+¦       
++---LOGIN
+¦   ¦   admin_login.html
+¦   ¦   index.html
+¦   ¦   theatre_login.html
+¦   ¦   theatre_registration.html
+¦   ¦   user_login.html
+¦   ¦   user_registration.html
+¦   ¦   
+¦   +---login_backend
+¦   ¦       theatre_login.php
+¦   ¦       theatre_registration.php
+¦   ¦       user_login.php
+¦   ¦       user_registration.php
+¦   ¦       
+¦   +---login_stylesheet
+¦           style.css
+¦           
++---THEATRE
+¦   ¦   add_movie.php
+¦   ¦   rejected.html
+¦   ¦   theatre_home.php
+¦   ¦   update_details.html
+¦   ¦   waiting.html
+¦   ¦   
+¦   +---theatre_backend
+¦   ¦       add_show.php
+¦   ¦       
+¦   +---Theatre_stylesheet
+¦           add_movie.css
+¦           theatre_home.css
+¦           update_details.css
+¦           
++---USER
+    ¦   add_review.html
+    ¦   booking.html
+    ¦   home.html
+    ¦   movie_info.html
+    ¦   movie_review.html
+    ¦   
+    +---user_backend
+    ¦       movie_card.php
+    ¦       movie_details.php
+    ¦       movie_info.php
+    ¦       
+    +---user_script
+    ¦       add_review.js
+    ¦       booking.js
+    ¦       movie_card.js
+    ¦       movie_info.js
+    ¦       movie_review.js
+    ¦       
+    +---user_stylesheet
+            add_review.css
+            booking.css
+            movie_info.css
+            movie_review.css
+            style2.css
+            
