@@ -59,22 +59,7 @@ while($row = $result->fetch_assoc()){
 <input type="number" name="ticket_price" required>
 </div>
 
-<!-- Total Seats -->
-<div class="input-group">
-<label>Total Seats</label>
-<input type="number" name="total_seat" required>
-</div>
 
-<!-- Format -->
-<div class="input-group">
-<label>Format</label>
-<select name="format">
-<option>2D</option>
-<option>3D</option>
-<option>IMAX</option>
-<option>4DX</option>
-</select>
-</div>
 
 <button type="submit">Add Show</button>
 
