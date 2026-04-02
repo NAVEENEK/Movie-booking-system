@@ -29,7 +29,7 @@ $show_time = date("H:i:s", strtotime($show_time_input)); // 24hr format
 $show_date = date("Y-m-d", strtotime($show_date_input)); // safe date format
 
 // INSERT QUERY
-$sql = "INSERT INTO `show` 
+$sql = "INSERT INTO `shows`
 (movie_id, theatre_id, show_time, show_date, ticket_price)
 VALUES 
 ('$movie_id', '$theatre_id', '$show_time', '$show_date', '$price')";
