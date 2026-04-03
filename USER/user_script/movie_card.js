@@ -13,7 +13,7 @@ async function fetchMovies() {
         const response = await fetch("user_backend/movie_card.php");
         const data = await response.json();
 
-        console.log(data); // debug
+        console.log("API DATA:", data); // debug
 
         allNowShowing = data.nowShowing;
         allTopRated = data.topRated;
@@ -31,6 +31,7 @@ OPEN MOVIE PAGE
 ================================ */
 
 function openMovie(id){
+    console.log("Opening movie with ID:", id); // debug
     window.location.href = "movie_info.html?id=" + id;
 }
 
@@ -41,13 +42,15 @@ LOAD MOVIES
 
 function loadMovies(nowShowing, topRated){
 
-    moviesContainer.innerHTML="";
-    topRatedContainer.innerHTML="";
+    moviesContainer.innerHTML = "";
+    topRatedContainer.innerHTML = "";
 
     // NOW SHOWING
     nowShowing.forEach(movie => {
+        console.log("NOW SHOWING MOVIE:", movie); // debug
+
         moviesContainer.innerHTML += `
-        <div class="movie-card" onclick="openMovie(${movie.show_id})">
+        <div class="movie-card" onclick="openMovie(${movie.movie_id})">
             <img src="${movie.poster}">
             <div class="movie-info">
                 <h3>${movie.movie_name}</h3>
@@ -60,8 +63,10 @@ function loadMovies(nowShowing, topRated){
 
     // TOP RATED
     topRated.forEach(movie => {
+        console.log("TOP RATED MOVIE:", movie); // debug
+
         topRatedContainer.innerHTML += `
-        <div class="movie-card" onclick="openMovie(${movie.show_id})">
+        <div class="movie-card" onclick="openMovie(${movie.movie_id})">
             <img src="${movie.poster}">
             <div class="movie-info">
                 <h3>${movie.movie_name}</h3>
@@ -76,7 +81,7 @@ function loadMovies(nowShowing, topRated){
 
 
 /* ===============================
-FILTER BUTTONS (FIXED)
+FILTER BUTTONS
 ================================ */
 
 const filters = document.querySelectorAll(".filter");
@@ -94,7 +99,7 @@ filters.forEach(button =>{
             loadMovies(allNowShowing, allTopRated);
         } else {
             const filtered = allNowShowing.filter(movie => movie.genre === genre);
-            loadMovies(filtered, allTopRated); // topRated stays same
+            loadMovies(filtered, allTopRated);
         }
 
     });

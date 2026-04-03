@@ -8,8 +8,6 @@ font-family:Segoe UI, sans-serif;
 body{
 background:#0f172a;
 color:white;
-display:flex;
-justify-content:center;
 }
 
 .navbar{
@@ -22,60 +20,13 @@ top:0;
 }
 
 .container{
-margin-top:90px;
+margin:90px auto 0 auto;
 width:700px;
 text-align:center;
 }
 
-/* MOVIE CARD */
-
-.movie-card{
-display:flex;
-align-items:center;
-background:#1e293b;
-padding:15px;
-border-radius:8px;
-margin-bottom:20px;
-}
-
-.movie-poster{
-width:90px;
-border-radius:6px;
-margin-right:15px;
-}
-
-.movie-details{
-text-align:left;
-}
-
-.rating{
-color:#facc15;
-margin:5px 0;
-}
 
 
-/* FORMAT BUTTON */
-
-.format-section{
-margin-bottom:20px;
-}
-
-.format-btn{
-padding:10px 20px;
-margin:5px;
-border:none;
-border-radius:6px;
-background:#374151;
-color:white;
-cursor:pointer;
-}
-
-.format-btn.active{
-background:#ff4d4d;
-}
-
-
-/* SCREEN */
 
 .screen{
 background:#e5e7eb;

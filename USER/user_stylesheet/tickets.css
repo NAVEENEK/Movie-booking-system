@@ -1,0 +1,64 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
+    background:#000;
+    color:white;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#8b0000;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.navbar h1{
+    color:white;
+}
+
+.navbar button{
+    background:black;
+    color:white;
+    border:1px solid red;
+    padding:10px 15px;
+    cursor:pointer;
+}
+
+.navbar button:hover{
+    background:red;
+}
+
+/* CONTAINER */
+.container{
+    padding:20px;
+}
+
+/* TICKET CARD */
+.ticket-card{
+    background:#111;
+    border-left:5px solid red;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.ticket-card:hover{
+    transform:scale(1.02);
+}
+
+.ticket-card h2{
+    color:red;
+    margin-bottom:10px;
+}
+
+.ticket-card p{
+    margin:5px 0;
+}

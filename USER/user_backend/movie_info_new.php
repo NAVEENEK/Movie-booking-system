@@ -22,6 +22,7 @@ $sql = "SELECT
             t.theatre_id,
             t.theatre_name,
             t.ac_type,
+            s.show_id,
             s.show_time
         FROM shows s
         JOIN theatre t ON s.theatre_id = t.theatre_id
@@ -58,11 +59,14 @@ while($row = $result->fetch_assoc()){
             "theatre_id" => $tid,
             "theatre_name" => $row['theatre_name'],
             "ac_type" => $row['ac_type'],
-            "times" => []
+            "shows" => []   // ✅ changed
         ];
     }
 
-    $theatres[$tid]["times"][] = $row['show_time'];
+    $theatres[$tid]["shows"][] = [
+        "show_id" => $row['show_id'],     // ✅ added
+        "show_time" => $row['show_time']  // ✅ added
+    ];
 }
 
 /* ================= OUTPUT ================= */
