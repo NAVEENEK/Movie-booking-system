@@ -1,6 +1,14 @@
 const urlParams = new URLSearchParams(window.location.search);
 const movie_id = urlParams.get("id");
 
+console.log("Movie ID:", movie_id);
+
+// 🚨 STOP if movie_id missing
+if(!movie_id){
+    alert("Invalid movie ID");
+    throw new Error("movie_id is missing");
+}
+
 // DEFAULT DATE
 document.getElementById("dateSelect").valueAsDate = new Date();
 
@@ -12,6 +20,8 @@ function loadMovieDetails(){
     fetch(`user_backend/movie_details.php?movie_id=${movie_id}`)
     .then(res => res.json())
     .then(data => {
+
+        console.log("Movie Details:", data);
 
         if(!data || data.error){
             console.error("Movie not found");
@@ -30,9 +40,9 @@ function loadMovieDetails(){
             `⭐ ${data.rating} / 5`;
 
         document.getElementById("moviePoster").src =
-            `../images/${data.poster}`;
+            `../IMAGE/${data.poster}`; // ⚠️ your folder is IMAGE not images
     })
-    .catch(err => console.error(err));
+    .catch(err => console.error("Movie details error:", err));
 }
 
 
@@ -63,26 +73,20 @@ function loadTheatres() {
         return;
     }
 
-    // ✅ FIXED DATE FORMAT
     const date = new Date(rawDate).toISOString().split('T')[0];
 
     container.innerHTML = "<p>Loading...</p>";
 
     fetch(`user_backend/movie_info_new.php?movie_id=${movie_id}&district=${district}&date=${date}`)
-    .then(res => res.text()) // safer
-    .then(text => {
+    .then(res => res.json()) // ✅ FIXED
+    .then(data => {
 
-        console.log("RAW RESPONSE:", text);
+        console.log("Theatre Data:", data);
 
-        if(!text){
-            throw new Error("Empty response");
-        }
-
-        const data = JSON.parse(text);
         displayTheatres(data);
     })
     .catch(err => {
-        console.error(err);
+        console.error("Theatre error:", err);
         container.innerHTML = "<p>Error loading theatres</p>";
     });
 }
@@ -102,22 +106,23 @@ function displayTheatres(list){
 
     list.forEach(theatre => {
 
-        const timesHTML = theatre.times.map(time =>
-            `<span class="showtime">${formatTime(time)}</span>`
+        if(!theatre.shows || theatre.shows.length === 0){
+            return;
+        }
+
+        const timesHTML = theatre.shows.map(show =>
+            `<span class="showtime" onclick="openBooking(${show.show_id})">
+                ${formatTime(show.show_time)}
+             </span>`
         ).join("");
 
         container.innerHTML += `
-        <div class="theatre-card" onclick="openTheatre(${theatre.theatre_id})">
-
+        <div class="theatre-card">
             <h3>${theatre.theatre_name}</h3>
-
-            <!-- ❌ removed format -->
             <p class="theatre-type">${theatre.ac_type}</p>
-
             <div class="showtimes">
                 ${timesHTML}
             </div>
-
         </div>
         `;
     });
@@ -138,6 +143,7 @@ loadTheatres();
 
 /* ================= NAV ================= */
 
-function openTheatre(id){
-    window.location.href = `booking.html?theatre=${id}&movie=${movie_id}`;
+function openBooking(show_id){
+    console.log("Opening booking for show:", show_id);
+    window.location.href = `booking.html?show_id=${show_id}`;
 }

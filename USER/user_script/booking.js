@@ -1,88 +1,134 @@
+// =========================
+// GET URL PARAMS
+// =========================
+const params = new URLSearchParams(window.location.search)
+const show_id = params.get("show_id")
+
+// 🚨 If show_id missing → stop everything
+if(!show_id){
+    alert("Invalid access! No show selected.")
+    throw new Error("show_id is missing in URL")
+}
+
+// =========================
+// DOM ELEMENTS
+// =========================
 const seatContainer = document.getElementById("seat-container")
 const seatCount = document.getElementById("seat-count")
 const totalPrice = document.getElementById("total-price")
 
 let seatPrice = 150
+let bookedSeats = []
 
-const bookedSeats = [5,6,15,23]
 
+
+// =========================
+// FETCH BOOKED SEATS
+// =========================
+fetch(`user_backend/get_booked_seats.php?show_id=${show_id}`)
+.then(res => res.json())
+.then(data => {
+
+    console.log("Booked Seats:", data) // ✅ DEBUG
+
+    bookedSeats = data.map(Number)
+    createSeats()
+
+})
+.catch(err => {
+    console.error("Seat fetch error:", err)
+    createSeats()
+})
+
+// =========================
+// CREATE SEATS
+// =========================
 function createSeats(){
 
-for(let i=1;i<=60;i++){
+    seatContainer.innerHTML = ""
 
-const seat=document.createElement("div")
-seat.classList.add("seat")
-const row = String.fromCharCode(65 + Math.floor((i-1)/10))
-const number = ((i-1)%10) + 1
+    for(let i=1; i<=60; i++){
 
-seat.innerText = row + number
+        const seat = document.createElement("div")
+        seat.classList.add("seat")
 
-if(bookedSeats.includes(i)){
-seat.classList.add("booked")
+        const row = String.fromCharCode(65 + Math.floor((i-1)/10))
+        const number = ((i-1)%10) + 1
+
+        seat.innerText = row + number
+        seat.dataset.seatId = i
+
+        if(bookedSeats.includes(i)){
+            seat.classList.add("booked")
+        }
+
+        seat.addEventListener("click", selectSeat)
+
+        seatContainer.appendChild(seat)
+    }
 }
 
-seat.addEventListener("click",selectSeat)
-
-seatContainer.appendChild(seat)
-
-}
-
-}
-
+// =========================
+// SELECT SEAT
+// =========================
 function selectSeat(){
 
-if(this.classList.contains("booked")) return
+    if(this.classList.contains("booked")) return
 
-this.classList.toggle("selected")
+    this.classList.toggle("selected")
 
-updateSummary()
-
+    updateSummary()
 }
 
+// =========================
+// UPDATE SUMMARY
+// =========================
 function updateSummary(){
 
-const selectedSeats=document.querySelectorAll(".seat.selected")
+    const selectedSeats = document.querySelectorAll(".seat.selected")
 
-seatCount.innerText=selectedSeats.length
-totalPrice.innerText=selectedSeats.length * seatPrice
-
+    seatCount.innerText = selectedSeats.length
+    totalPrice.innerText = selectedSeats.length * seatPrice
 }
 
-createSeats()
-
-
-
-const formatBtns=document.querySelectorAll(".format-btn")
-
-formatBtns.forEach(btn=>{
-
-btn.addEventListener("click",()=>{
-
-formatBtns.forEach(b=>b.classList.remove("active"))
-btn.classList.add("active")
-
-const format=btn.dataset.format
-
-if(format==="2D") seatPrice=150
-if(format==="3D") seatPrice=200
-if(format==="Standard") seatPrice=120
-
-updateSummary()
-
-})
-
-})
-
-
+// =========================
+// CONFIRM BOOKING
+// =========================
 document.getElementById("confirmBtn").addEventListener("click",()=>{
 
-const selectedSeats=document.querySelectorAll(".seat.selected")
+    const selectedSeats = document.querySelectorAll(".seat.selected")
 
-if(selectedSeats.length===0){
-alert("Please select a seat")
-return
-}
+    if(selectedSeats.length === 0){
+        alert("Please select a seat")
+        return
+    }
 
-alert("Booking Confirmed!")
+    let seatsArray = []
+    selectedSeats.forEach(seat => {
+        seatsArray.push(seat.dataset.seatId)
+    })
 
+    let total = selectedSeats.length * seatPrice
+
+    fetch("user_backend/book_ticket.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `show_id=${show_id}&seats=${seatsArray.join(",")}&total=${total}`
+    })
+    .then(res => res.text())
+    .then(data => {
+
+        console.log("Booking Response:", data) // ✅ DEBUG
+
+        if(data.trim() === "success"){
+            alert("Booking Confirmed!")
+            location.reload()
+        } else {
+            alert("Booking Failed ❌")
+        }
+
+    })
+    .catch(err => console.error("Booking error:", err))
 })

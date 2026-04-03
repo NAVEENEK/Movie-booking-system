@@ -6,7 +6,7 @@ header("Content-Type: application/json");
 
 /* NOW SHOWING */
 $nowShowingQuery = "SELECT 
-                        movie_id AS show_id,
+                        movie_id,
                         title AS movie_name,
                         genre,
                         poster,
@@ -25,7 +25,7 @@ while($row = $nowResult->fetch_assoc()){
 
 /* TOP RATED */
 $topRatedQuery = "SELECT 
-                        movie_id AS show_id,
+                        movie_id,
                         title AS movie_name,
                         genre,
                         poster,
