@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -7,12 +9,13 @@ include("../../db.php");
 
 header("Content-Type: application/json");
 
-$user_id = $_GET['user_id'] ?? '';
-
-if(!$user_id){
+// ✅ USE SESSION
+if(!isset($_SESSION['user_id'])){
     echo json_encode([]);
     exit;
 }
+
+$user_id = $_SESSION['user_id'];
 
 $sql = "
 SELECT 
@@ -26,6 +29,7 @@ JOIN shows s ON b.show_id = s.show_id
 JOIN movie m ON s.movie_id = m.movie_id
 JOIN theatre t ON s.theatre_id = t.theatre_id
 WHERE b.user_id = $user_id
+ORDER BY b.booking_date DESC
 ";
 
 $result = $conn->query($sql);

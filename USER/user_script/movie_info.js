@@ -145,5 +145,5 @@ loadTheatres();
 
 function openBooking(show_id){
     console.log("Opening booking for show:", show_id);
-    window.location.href = `booking.html?show_id=${show_id}`;
+    window.location.href = `booking.php?show_id=${show_id}`;
 }

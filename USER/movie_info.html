@@ -15,65 +15,69 @@
 
 <div class="movie-container">
 
-    <!-- DYNAMIC POSTER -->
     <img id="moviePoster" class="movie-banner">
 
     <div class="movie-details">
 
-        <!-- DYNAMIC CONTENT -->
         <h1 id="movieTitle"></h1>
-
         <p id="movieMeta" class="movie-meta"></p>
+        <p id="movieDescription"></p>
+        <div id="movieRating"></div>
 
-        <p id="movieDescription" class="movie-description"></p>
-
-        <div id="movieRating" class="rating"></div>
-
-        <button class="primary-btn"
-        onclick="window.location.href='movie_review.html'">
-        View Reviews
+        <button class="primary-btn" id="viewReviewBtn">
+            View Reviews
         </button>
 
-        <button class="primary-btn"
-        onclick="window.location.href='add_review.html'">
-        Add Review
+        <button class="primary-btn" id="addReviewBtn">
+            Add Review
         </button>
 
     </div>
 
 </div>
 
-<!-- FILTERS -->
-
 <div class="filter-section">
-
     <select id="districtSelect">
         <option value="">Select District</option>
-        <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-        <option value="Kollam">Kollam</option>
-        <option value="Pathanamthitta">Pathanamthitta</option>
-        <option value="Alappuzha">Alappuzha</option>
-        <option value="Kottayam">Kottayam</option>
-        <option value="Idukki">Idukki</option>
         <option value="Ernakulam">Ernakulam</option>
-        <option value="Thrissur">Thrissur</option>
-        <option value="Palakkad">Palakkad</option>
-        <option value="Malappuram">Malappuram</option>
-        <option value="Kozhikode">Kozhikode</option>
-        <option value="Wayanad">Wayanad</option>
-        <option value="Kannur">Kannur</option>
-        <option value="Kasaragod">Kasaragod</option>
     </select>
 
     <input type="date" id="dateSelect">
-
 </div>
 
-<h2 class="section-title">Theaters Nearby</h2>
-
+<h2>Theaters Nearby</h2>
 <div id="theatreList"></div>
 
 <script src="user_script/movie_info.js"></script>
+
+<script>
+document.getElementById("addReviewBtn").onclick = function () {
+
+    const movie_id = new URLSearchParams(window.location.search).get("id");
+
+    console.log("CLICK movie_id:", movie_id);
+
+    if (!movie_id) {
+        alert("Movie ID missing");
+        return;
+    }
+
+    window.location.href = "/movie_booking/USER/add_review.html?id=" + movie_id;
+};
+
+
+document.getElementById("viewReviewBtn").onclick = function () {
+
+    const movie_id = new URLSearchParams(window.location.search).get("id");
+
+    if (!movie_id) {
+        alert("Movie ID missing");
+        return;
+    }
+
+    window.location.href = "/movie_booking/USER/movie_review.html?id=" + movie_id;
+};
+</script>
 
 </body>
 </html>

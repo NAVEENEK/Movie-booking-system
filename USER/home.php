@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['user_id'])){
+    header("Location: ../LOGIN/user_login.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +25,7 @@
 <nav class="navbar">
 <div class="logo">🎬 Movie</div>
 
-<a href="tickets.html" class="btn-signin">Tickets</a>
+<a href="tickets.php" class="btn-signin">Tickets</a>
 </nav>
 
 <!-- NOW SHOWING -->
