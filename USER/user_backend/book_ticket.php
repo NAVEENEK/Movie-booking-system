@@ -1,12 +1,19 @@
 <?php
 
+session_start(); // ✅ VERY IMPORTANT
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 include("../../db.php");
 
-// ⚠️ TEMP: hardcoded user (later replace with session)
-$user_id = 1;
+// ✅ GET USER FROM SESSION
+if(!isset($_SESSION['user_id'])){
+    echo "User not logged in";
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];
 
 $show_id = $_POST['show_id'] ?? '';
 $seats = $_POST['seats'] ?? '';
@@ -27,5 +34,5 @@ $stmt->bind_param("iisd", $user_id, $show_id, $seats, $total);
 if($stmt->execute()){
     echo "success";
 } else {
-    echo "error";
+    echo "Error: " . $stmt->error;
 }

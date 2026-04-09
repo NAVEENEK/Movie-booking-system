@@ -21,15 +21,16 @@ let seatPrice = 150
 let bookedSeats = []
 
 
-
 // =========================
 // FETCH BOOKED SEATS
 // =========================
-fetch(`user_backend/get_booked_seats.php?show_id=${show_id}`)
+fetch(`user_backend/get_booked_seats.php?show_id=${show_id}`, {
+    credentials: "include" // ✅ ensure session consistency
+})
 .then(res => res.json())
 .then(data => {
 
-    console.log("Booked Seats:", data) // ✅ DEBUG
+    console.log("Booked Seats:", data)
 
     bookedSeats = data.map(Number)
     createSeats()
@@ -39,6 +40,7 @@ fetch(`user_backend/get_booked_seats.php?show_id=${show_id}`)
     console.error("Seat fetch error:", err)
     createSeats()
 })
+
 
 // =========================
 // CREATE SEATS
@@ -68,6 +70,7 @@ function createSeats(){
     }
 }
 
+
 // =========================
 // SELECT SEAT
 // =========================
@@ -80,6 +83,7 @@ function selectSeat(){
     updateSummary()
 }
 
+
 // =========================
 // UPDATE SUMMARY
 // =========================
@@ -90,6 +94,7 @@ function updateSummary(){
     seatCount.innerText = selectedSeats.length
     totalPrice.innerText = selectedSeats.length * seatPrice
 }
+
 
 // =========================
 // CONFIRM BOOKING
@@ -115,20 +120,24 @@ document.getElementById("confirmBtn").addEventListener("click",()=>{
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
+        credentials: "include", // ✅ FIX: send session cookie
         body: `show_id=${show_id}&seats=${seatsArray.join(",")}&total=${total}`
     })
     .then(res => res.text())
     .then(data => {
 
-        console.log("Booking Response:", data) // ✅ DEBUG
+        console.log("Booking Response:", data)
 
         if(data.trim() === "success"){
             alert("Booking Confirmed!")
             location.reload()
         } else {
-            alert("Booking Failed ❌")
+            alert(data) // ✅ SHOW REAL ERROR
         }
 
     })
-    .catch(err => console.error("Booking error:", err))
+    .catch(err => {
+        console.error("Booking error:", err)
+        alert("Something went wrong")
+    })
 })
